@@ -3,7 +3,7 @@ import { supabase, getUploadHistory } from '../lib/supabase.js'
 import { getCancellations } from '../lib/dataTransform.js'
 import { ALLOWED_SALE_SOURCES } from '../lib/csvParser.js'
 
-const PAGE_SIZE = 5000
+const PAGE_SIZE = 1000
 
 /**
  * Fetch all sales_data rows for a given uploadId (paginated).

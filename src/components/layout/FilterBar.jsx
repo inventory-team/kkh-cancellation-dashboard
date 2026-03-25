@@ -82,7 +82,7 @@ export default function FilterBar({ allRows, filters, setFilter, resetFilters, a
 
   const yearOpts   = years.map((y) => ({ value: y, label: String(y) }))
   const monthOpts  = Array.from({ length: 12 }, (_, i) => ({ value: i + 1, label: MONTH_NAMES[i + 1] }))
-  const vendorOpts = vendors.slice(0, 60).map((v) => ({ value: v, label: v }))
+  const vendorOpts = vendors.map((v) => ({ value: v, label: v }))
   const reasonOpts = reasons.slice(0, 40).map((r) => ({ value: r, label: r }))
   const sourceOpts = ALLOWED_SALE_SOURCES.map((s) => ({ value: s, label: s }))
 

@@ -24,7 +24,14 @@ async function fetchAllRows(uploadId) {
 
     const { data, error } = await query
     if (error) throw error
-    allRows = allRows.concat(data ?? [])
+    const enriched = (data ?? []).map((r) => {
+      if (r.year != null) return r
+      const d = r.transaction_date ? String(r.transaction_date) : null
+      const year  = d ? parseInt(d.slice(0, 4), 10) || null : null
+      const month = d ? parseInt(d.slice(5, 7), 10) || null : null
+      return { ...r, year, month }
+    })
+    allRows = allRows.concat(enriched)
     if (!data || data.length < PAGE_SIZE) break
     from += PAGE_SIZE
   }

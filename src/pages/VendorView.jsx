@@ -47,8 +47,8 @@ export default function VendorView({ allRows, cancelledRows }) {
   )
   const scored = useMemo(() => computeVendorRiskScores(vendorStats), [vendorStats])
 
-  const topByUnits = scored.slice(0, 10).map((v) => ({ label: v.vendor, units: v.cancelUnits }))
-  const topBySales = scored.slice(0, 10).map((v) => ({ label: v.vendor, sales: v.cancelSales }))
+  const topByUnits = [...scored].sort((a, b) => b.cancelUnits - a.cancelUnits).slice(0, 10).map((v) => ({ label: v.vendor, units: v.cancelUnits }))
+  const topBySales = [...scored].sort((a, b) => b.cancelSales - a.cancelSales).slice(0, 10).map((v) => ({ label: v.vendor, sales: v.cancelSales }))
 
   const selectedData = useMemo(() => {
     if (!selectedVendor) return null
